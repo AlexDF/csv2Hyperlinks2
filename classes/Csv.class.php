@@ -11,7 +11,9 @@ class Csv {
     return fopen($path, "r");
   }
 
-
+  public static function close($handle) {
+    fclose( $handle );
+  }
 
 } // end class Csv
 
