@@ -5,9 +5,10 @@ interface CsvInterface {
   public static function open( $path );
   public static function close( $handle );
   public static function getFriendlyHeadings($filepath, $ignore_first_row, $column);
+  public static function getRecords($filepath, $ignore_first_row, $headings);
 }
 
-class Csv {
+class Csv implements CsvInterface {
 
   public static function open($path) {
     return fopen($path, "r");
@@ -28,11 +29,28 @@ class Csv {
         } //end if-else
       } //end while
     } //end if
+    self::close($handle);
     return $friendlyHeadings;
   } //end getFriendly Headings
 
-} // end class Csv
+  public static function getRecords($filepath, $ignore_first_row, $headings = NULL) {
+    ini_set('auto_detect_line_endings', TRUE);
+    if( $handle = self::open($filepath) ) {
+      while( ($row = fgetcsv($handle, 1000, ",")) != FALSE ) {
+        if( !$ignore_first_row ) {
+          $headings = $row;
+          $ignore_first_row = TRUE;
+        } else {
+          $record = array_combine($headings, $row);
+          $records[$record['Institution (entity) name']] = $record;
+        } //end if-else
+      } //end while
+    } //end if
+    self::close($handle);
+    return $records;
+  } //end getRecords
 
+} //end class Csv
 
 
 ?>
