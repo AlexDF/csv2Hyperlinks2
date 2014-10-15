@@ -1,28 +1,31 @@
 <?php
   class Actions {
+    private static $output="";
+  
     public static function printLinks($records) {
-      $output = "";
       foreach( $records as $record ) {
-        $output .= '<a href="index.php?school=' . $record['Institution (entity) name'] . '">' . $record['Institution (entity) name'] . '</a>' . '<br>';
+        self::$output .= '<a href="index.php?page_type=fetch_record&&school=' .
+          $record['Institution (entity) name'] . '">' .
+          $record['Institution (entity) name'] . '</a>' . '<br>';
       }
-      return $output;
+      return self::$output;
     }
 
     
 
     public static function displayRecord( $record ) {
-      echo '<h2 id="recordTitle">' . $_GET['school'] . '</h2>';
-    echo '<a class="back-btn-link" href="index.php"><div class="back-btn">Back</div></a>';
-      echo "<table>";
+      
+      self::$output .= '<h2 id="recordTitle">' . $_GET['school'] .
+        '</h2><a class="back-btn-link" href="index.php?page_type=index">' .
+        '<div class="back-btn">Back</div></a><table>';
+
       foreach( $record as $key => $value ) {
-        echo "<tr>";
-        echo "<th>" . $key . "</th>";
-        echo "<td>" . $value . "</td>";
-        echo "</tr>";
+        self::$output .= '<tr>' . '<th>' . $key . '</th>' .
+          '<td>' . $value . '</td>'. '</tr>';
       }
-      echo "</table>";
+      self::$output .= '</table>';
 
-
+      return self::$output;
     }
 
 

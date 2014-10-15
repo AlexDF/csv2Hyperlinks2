@@ -14,7 +14,6 @@ interface CsvInterface {
 class Csv implements CsvInterface {
 
 
-
   public static function open($path) {
     return fopen($path, "r");
   }
