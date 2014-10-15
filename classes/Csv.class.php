@@ -48,13 +48,12 @@ class Csv implements CsvInterface {
     ini_set('auto_detect_line_endings', TRUE);
     if( $handle = self::open($filepath) ) {
       while( ($row = fgetcsv($handle, 1000, ",")) != FALSE ) {
-        if( !$ignore_first_row ) {
-          $headings = $row;
-          $ignore_first_row = TRUE;
+        if( $ignore_first_row ) {
+          $ignore_first_row = FALSE;
         } else {
           $record = array_combine($headings, $row);
           $records[$record['Institution (entity) name']] = $record;
-        } //end if-else
+        }      
       } //end while
     } //end if
     self::close($handle);

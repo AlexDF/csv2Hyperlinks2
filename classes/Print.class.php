@@ -1,9 +1,11 @@
 <?php
   class Actions {
     public static function printLinks($records) {
+      $output = "";
       foreach( $records as $record ) {
-        echo '<a href="index.php?school=' . $record['Institution (entity) name'] . '">' . $record['Institution (entity) name'] . '</a>' . '<br>';
+        $output .= '<a href="index.php?school=' . $record['Institution (entity) name'] . '">' . $record['Institution (entity) name'] . '</a>' . '<br>';
       }
+      return $output;
     }
 
     
