@@ -1,5 +1,13 @@
 <?php
-  class Actions {
+  
+
+  interface ActionsInterface {
+    public static function printLinks( $records );
+    public static function displayRecord( $record );
+  }
+
+
+  class Actions implements ActionsInterface {
     private static $output="";
   
     public static function printLinks($records) {

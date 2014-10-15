@@ -1,6 +1,11 @@
 <?php
   
-  class Html {
+  interface HtmlInterface {
+    public static function render( $page_type );
+  }
+
+
+  class Html implements HtmlInterface {
     public static $header = '<!DOCTYPE html><html><head></head><body>';
     public static $content = "";
     public static $footer = "</body></html>";
