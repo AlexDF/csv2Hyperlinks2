@@ -8,15 +8,24 @@ interface CsvInterface {
   public static function getRecords($filepath, $ignore_first_row, $headings);
 }
 
+
+
+
 class Csv implements CsvInterface {
+
+
 
   public static function open($path) {
     return fopen($path, "r");
   }
 
+
+
   public static function close($handle) {
     fclose( $handle );
   }
+
+
 
   public static function getFriendlyHeadings($filepath, $ignore_first_row, $column) {
     ini_set('auto_detect_line_endings', TRUE);
@@ -32,6 +41,8 @@ class Csv implements CsvInterface {
     self::close($handle);
     return $friendlyHeadings;
   } //end getFriendly Headings
+
+
 
   public static function getRecords($filepath, $ignore_first_row, $headings = NULL) {
     ini_set('auto_detect_line_endings', TRUE);
@@ -49,6 +60,8 @@ class Csv implements CsvInterface {
     self::close($handle);
     return $records;
   } //end getRecords
+
+
 
 } //end class Csv
 
