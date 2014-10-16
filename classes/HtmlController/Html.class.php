@@ -8,7 +8,7 @@
 
 
   class Html implements HtmlInterface {
-    public static $header = '<!DOCTYPE html><html><head></head><body>';
+    public static $header = '<!DOCTYPE html><html><head><link type="text/css" rel="stylesheet" href="css/style.css"/></head><body><h1>School Directory</h1><hr>';
     public static $content = "";
     public static $footer = "</body></html>";
 
