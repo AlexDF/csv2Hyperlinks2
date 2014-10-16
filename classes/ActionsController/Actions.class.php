@@ -1,5 +1,5 @@
 <?php
-  
+  namespace ActionsController;
 
   interface ActionsInterface {
     public static function printLinks( $records );

@@ -1,5 +1,5 @@
 <?php
-//namespace Csv;
+namespace CsvController;
 
 interface CsvInterface {
   public static function open( $path );
